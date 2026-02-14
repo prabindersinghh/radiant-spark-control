@@ -1,29 +1,34 @@
 import PageLayout from "@/components/PageLayout";
 import PageBanner from "@/components/PageBanner";
 import { Link } from "react-router-dom";
-import { Settings, Cpu, Monitor, Wrench, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+import controlPanelIcon from "@/assets/control-panel-icon.png";
+import plcIcon from "@/assets/plc-icon.png";
+import hmiIcon from "@/assets/hmi-icon.png";
+import fieldServiceIcon from "@/assets/field-service-icon.png";
 
 const services = [
   {
-    icon: Settings,
+    icon: controlPanelIcon,
     title: "Control Panels",
     href: "/control-panels",
     desc: "Radiant Control Systems specializes in designing and manufacturing UL-508A control panels for diverse industrial applications. Our panels are built to the highest standards, ensuring reliability and safety in every installation.",
   },
   {
-    icon: Cpu,
+    icon: plcIcon,
     title: "PLC System Integration",
     href: "/plc-system-integration",
     desc: "Expert programming abilities with all significant PLC platforms and seamless integration with IoT solutions. We design, program, and commission PLC systems tailored to your specific process requirements.",
   },
   {
-    icon: Monitor,
+    icon: hmiIcon,
     title: "HMI/SCADA Integration",
     href: "/hmi-scada-integration",
     desc: "Lead the industry with BIM-based graphics and Industry 4.0 operator interfaces. Our SCADA solutions provide real-time monitoring and control of your industrial processes.",
   },
   {
-    icon: Wrench,
+    icon: fieldServiceIcon,
     title: "Field Service",
     href: "/field-service",
     desc: "24/7 support services via our highly trained and experienced support team. From installation to commissioning to ongoing maintenance, we're there when you need us.",
@@ -55,8 +60,8 @@ const ServicePage = ({ slug }: { slug: string }) => {
                   to={s.href}
                   className="group bg-card border border-border rounded-lg p-8 hover:border-gold/50 hover:shadow-xl transition-all duration-300"
                 >
-                  <div className="w-14 h-14 rounded-md gradient-navy flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <s.icon className="w-7 h-7 text-gold" />
+                  <div className="w-16 h-16 rounded-md gradient-navy flex items-center justify-center mb-6 group-hover:scale-110 transition-transform p-3">
+                    <img src={s.icon} alt={s.title} className="w-full h-full object-contain" />
                   </div>
                   <h3 className="text-xl font-heading font-bold text-foreground mb-3">{s.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
@@ -77,8 +82,8 @@ const ServicePage = ({ slug }: { slug: string }) => {
       <PageBanner title={service.title} breadcrumb={service.title} />
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 max-w-3xl">
-          <div className="w-16 h-16 rounded-md gradient-navy flex items-center justify-center mb-8">
-            <service.icon className="w-8 h-8 text-gold" />
+          <div className="w-20 h-20 rounded-md gradient-navy flex items-center justify-center mb-8 p-4">
+            <img src={service.icon} alt={service.title} className="w-full h-full object-contain" />
           </div>
           <p className="text-muted-foreground leading-relaxed text-lg mb-8">{service.desc}</p>
           <Link

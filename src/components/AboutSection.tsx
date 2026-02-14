@@ -1,5 +1,6 @@
-import aboutImg from "@/assets/about-img.jpg";
+import aboutImg from "@/assets/about-real.jpg";
 import { CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const highlights = [
   "Industrial Automation since 2005",
@@ -16,7 +17,7 @@ const AboutSection = () => {
           <div className="relative">
             <img
               src={aboutImg}
-              alt="Industrial control systems"
+              alt="Radiant Control Systems team at work"
               className="rounded-lg w-full shadow-2xl"
             />
             <div className="absolute -bottom-6 -right-6 w-32 h-32 gradient-gold rounded-lg hidden lg:flex items-center justify-center">
@@ -45,12 +46,12 @@ const AboutSection = () => {
               ))}
             </div>
 
-            <a
-              href="#contact"
+            <Link
+              to="/about-us"
               className="inline-block gradient-gold text-secondary-foreground px-8 py-4 rounded-md font-heading font-bold text-sm uppercase tracking-wider hover:opacity-90 transition-opacity"
             >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
       </div>

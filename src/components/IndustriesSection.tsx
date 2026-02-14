@@ -1,14 +1,23 @@
-import { Droplets, Mountain, Car, Truck, UtensilsCrossed, Zap, Fuel, Factory } from "lucide-react";
+import { Link } from "react-router-dom";
+
+import wastewaterThumb from "@/assets/wastewater-thumb.jpg";
+import aggregateThumb from "@/assets/aggregate-thumb.jpg";
+import automobilesThumb from "@/assets/automobiles-thumb.jpg";
+import logisticsThumb from "@/assets/logistics-thumb.jpg";
+import foodBeverageThumb from "@/assets/food-beverage-thumb.jpg";
+import powerPlantThumb from "@/assets/power-plant-thumb.jpg";
+import oilGasThumb from "@/assets/oil-gas-thumb.jpg";
+import manufacturingThumb from "@/assets/manufacturing-thumb.jpg";
 
 const industries = [
-  { icon: Droplets, title: "Wastewater", desc: "Reliable lift station operation including pump control for safe and sanitary conditions." },
-  { icon: Mountain, title: "Aggregate", desc: "Developing products and systems derived from production for aggregate industries." },
-  { icon: Car, title: "Automobiles", desc: "25+ years helping automotive clients realize opportunities through automation." },
-  { icon: Truck, title: "Logistics", desc: "Strategic optimization of warehouse control systems for supply chain excellence." },
-  { icon: UtensilsCrossed, title: "Food & Beverage", desc: "Software and hardware applications meeting ever-changing consumer and market demand." },
-  { icon: Zap, title: "Power Plant", desc: "Supporting energy companies investing in alternative and renewable energy sources." },
-  { icon: Fuel, title: "Oil & Gas", desc: "Turnkey automation solutions for Upstream, Midstream, and Downstream sectors." },
-  { icon: Factory, title: "Manufacturing", desc: "Transforming manufacturing processes through strategic automation solutions." },
+  { image: wastewaterThumb, title: "Lift Station Controls", href: "/wastewater", desc: "Reliable lift station operation including pump control for safe and sanitary conditions." },
+  { image: aggregateThumb, title: "Aggregate", href: "/aggregate", desc: "Developing products and systems derived from production for aggregate industries." },
+  { image: automobilesThumb, title: "Automobiles", href: "/automobiles", desc: "25+ years helping automotive clients realize opportunities through automation." },
+  { image: logisticsThumb, title: "Logistics", href: "/logistics", desc: "Strategic optimization of warehouse control systems for supply chain excellence." },
+  { image: foodBeverageThumb, title: "Food & Beverage", href: "/food-beverage", desc: "Software and hardware applications meeting ever-changing consumer and market demand." },
+  { image: powerPlantThumb, title: "Power Plant", href: "/power-plant", desc: "Supporting energy companies investing in alternative and renewable energy sources." },
+  { image: oilGasThumb, title: "Oil & Gas", href: "/oil-gas", desc: "Turnkey automation solutions for Upstream, Midstream, and Downstream sectors." },
+  { image: manufacturingThumb, title: "Manufacturing", href: "/manufacturing", desc: "Transforming manufacturing processes through strategic automation solutions." },
 ];
 
 const IndustriesSection = () => {
@@ -24,14 +33,24 @@ const IndustriesSection = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {industries.map((ind) => (
-            <div
+            <Link
               key={ind.title}
-              className="group relative bg-primary-foreground/5 border border-primary-foreground/10 rounded-lg p-6 hover:bg-primary-foreground/10 hover:border-gold/30 transition-all duration-300 cursor-pointer"
+              to={ind.href}
+              className="group relative rounded-lg overflow-hidden cursor-pointer"
             >
-              <ind.icon className="w-8 h-8 text-gold mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-lg font-heading font-bold text-primary-foreground mb-2">{ind.title}</h3>
-              <p className="text-primary-foreground/60 text-sm leading-relaxed">{ind.desc}</p>
-            </div>
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={ind.image}
+                  alt={ind.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <h3 className="text-lg font-heading font-bold text-primary-foreground mb-1">{ind.title}</h3>
+                <p className="text-primary-foreground/60 text-xs leading-relaxed line-clamp-2">{ind.desc}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
