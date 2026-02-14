@@ -1,25 +1,54 @@
 import logo from "@/assets/logo.png";
 import { MapPin, Phone, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer id="contact" className="gradient-navy pt-16 pb-8">
+    <footer className="gradient-navy pt-16 pb-8">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div>
-            <img src={logo} alt="Radiant Control Systems" className="h-10 mb-4" />
-            <p className="text-primary-foreground/60 text-sm leading-relaxed">
+            <Link to="/"><img src={logo} alt="Radiant Control Systems" className="h-10 mb-4" /></Link>
+            <p className="text-primary-foreground/60 text-sm leading-relaxed mb-4">
               Your trusted partner in Industrial Automation since 2005. Delivering reliable and cost-effective solutions.
             </p>
+            <div className="flex gap-4">
+              {[
+                { label: "Facebook", href: "https://www.facebook.com/" },
+                { label: "Instagram", href: "https://www.instagram.com/" },
+                { label: "LinkedIn", href: "https://www.linkedin.com/company/radiant-control-systems-llc" },
+              ].map((s) => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-foreground/40 text-xs hover:text-gold transition-colors">
+                  {s.label}
+                </a>
+              ))}
+            </div>
           </div>
 
           <div>
             <h4 className="font-heading font-bold text-primary-foreground mb-4 uppercase text-sm tracking-wider">Quick Links</h4>
             <div className="flex flex-col gap-3">
-              {["Home", "About Us", "Services", "Industries", "Careers", "Contact"].map((l) => (
-                <a key={l} href={`#${l.toLowerCase().replace(/\s/g, "")}`} className="text-primary-foreground/60 text-sm hover:text-gold transition-colors">
-                  {l}
-                </a>
+              {[
+                { label: "Home", href: "/" },
+                { label: "About Us", href: "/about-us" },
+                { label: "Careers", href: "/careers" },
+                { label: "Contact Us", href: "/contact-us" },
+              ].map((l) => (
+                <Link key={l.label} to={l.href} className="text-primary-foreground/60 text-sm hover:text-gold transition-colors">{l.label}</Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-heading font-bold text-primary-foreground mb-4 uppercase text-sm tracking-wider">Services</h4>
+            <div className="flex flex-col gap-3">
+              {[
+                { label: "Control Panels", href: "/control-panels" },
+                { label: "PLC Integration", href: "/plc-system-integration" },
+                { label: "HMI/SCADA", href: "/hmi-scada-integration" },
+                { label: "Field Service", href: "/field-service" },
+              ].map((l) => (
+                <Link key={l.label} to={l.href} className="text-primary-foreground/60 text-sm hover:text-gold transition-colors">{l.label}</Link>
               ))}
             </div>
           </div>
@@ -43,10 +72,17 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 pt-8 text-center">
-          <p className="text-primary-foreground/40 text-xs">
-            © 2026 Radiant Control Systems. All rights reserved. | DBE & MBE Certified
-          </p>
+        <div className="border-t border-primary-foreground/10 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-primary-foreground/40 text-xs">
+              © 2026 Radiant Control Systems. All rights reserved. | DBE & MBE Certified
+            </p>
+            <div className="text-primary-foreground/30 text-xs flex gap-4">
+              <span>GDOT: 19325</span>
+              <span>CAGE: 10NB0</span>
+              <span>UEI: S5L4B99AGYX3</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
