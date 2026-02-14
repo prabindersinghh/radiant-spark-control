@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import hmiIcon from "@/assets/hmi-icon.png";
 import supportIcon from "@/assets/support-icon.png";
@@ -19,10 +20,16 @@ const solutions = [
 ];
 
 const IntegratedSolutions = () => {
+  const [headerRef, headerVisible] = useScrollReveal();
+  const [gridRef, gridVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.08 });
+
   return (
-    <section className="py-24 bg-background">
+    <section className="py-28 bg-background relative">
+      {/* Subtle top accent */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className={`text-center mb-20 reveal ${headerVisible ? "visible" : ""}`}>
           <span className="text-sm font-heading font-bold tracking-widest uppercase text-gold">Solutions</span>
           <h2 className="text-3xl md:text-5xl font-heading font-black text-foreground mt-3">
             Integrated Solutions for Industrial Automation
@@ -30,16 +37,20 @@ const IntegratedSolutions = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
             Comprehensive offerings designed to streamline and enhance industrial processes through advanced technology integration.
           </p>
+          <div className="w-16 h-[3px] gradient-gold rounded-full mx-auto mt-5" />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div
+          ref={gridRef}
+          className={`grid sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger-grid ${gridVisible ? "visible" : ""}`}
+        >
           {solutions.map((s) => (
             <Link
               key={s.title}
               to={s.href}
-              className="group bg-card border border-border rounded-lg p-6 hover:border-gold/50 hover:shadow-lg hover:shadow-gold/5 transition-all duration-300"
+              className="group bg-card border border-border rounded-lg p-6 shadow-card hover:shadow-card-hover hover:border-gold/40 hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="w-14 h-14 rounded-md gradient-navy flex items-center justify-center mb-4 group-hover:scale-110 transition-transform p-2.5">
+              <div className="w-14 h-14 rounded-md gradient-navy flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 p-2.5 shadow-card">
                 <img src={s.icon} alt={s.title} className="w-full h-full object-contain" />
               </div>
               <h3 className="text-base font-heading font-bold text-foreground mb-2 uppercase">{s.title}</h3>
