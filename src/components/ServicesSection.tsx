@@ -1,0 +1,56 @@
+import { Settings, Cpu, Monitor, Wrench } from "lucide-react";
+
+const services = [
+  {
+    icon: Settings,
+    title: "Control Panels",
+    desc: "Specializing in designing and manufacturing UL-508A control panels for diverse industrial applications.",
+  },
+  {
+    icon: Cpu,
+    title: "PLC System Integration",
+    desc: "Expert programming with all significant PLC platforms and seamless integration with IoT solutions.",
+  },
+  {
+    icon: Monitor,
+    title: "HMI/SCADA Integration",
+    desc: "Leading the industry with BIM-based graphics and Industry 4.0 operator interfaces.",
+  },
+  {
+    icon: Wrench,
+    title: "Field Service",
+    desc: "24/7 support services via our highly trained and experienced support team.",
+  },
+];
+
+const ServicesSection = () => {
+  return (
+    <section id="services" className="py-24 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <span className="text-sm font-heading font-bold tracking-widest uppercase text-gold">What We Do</span>
+          <h2 className="text-3xl md:text-5xl font-heading font-black text-foreground mt-3">
+            Our Core Services
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((s) => (
+            <div
+              key={s.title}
+              className="group bg-card border border-border rounded-lg p-8 hover:border-gold/50 hover:shadow-xl hover:shadow-gold/5 transition-all duration-300"
+            >
+              <div className="w-14 h-14 rounded-md gradient-navy flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <s.icon className="w-7 h-7 text-gold" />
+              </div>
+              <h3 className="text-xl font-heading font-bold text-foreground mb-3">{s.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ServicesSection;
