@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import wastewaterThumb from "@/assets/wastewater-thumb.jpg";
 import aggregateThumb from "@/assets/aggregate-thumb.jpg";
@@ -21,22 +22,32 @@ const industries = [
 ];
 
 const IndustriesSection = () => {
+  const [headerRef, headerVisible] = useScrollReveal();
+  const [gridRef, gridVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.08 });
+
   return (
-    <section id="industries" className="py-24 gradient-navy">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+    <section id="industries" className="py-28 gradient-navy relative overflow-hidden">
+      {/* Subtle pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+
+      <div className="container mx-auto px-4 relative">
+        <div ref={headerRef} className={`text-center mb-20 reveal ${headerVisible ? "visible" : ""}`}>
           <span className="text-sm font-heading font-bold tracking-widest uppercase text-gold">Sectors</span>
           <h2 className="text-3xl md:text-5xl font-heading font-black text-primary-foreground mt-3">
             Industries We Serve
           </h2>
+          <div className="w-16 h-[3px] gradient-gold rounded-full mx-auto mt-5" />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div
+          ref={gridRef}
+          className={`grid sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger-grid ${gridVisible ? "visible" : ""}`}
+        >
           {industries.map((ind) => (
             <Link
               key={ind.title}
               to={ind.href}
-              className="group relative rounded-lg overflow-hidden cursor-pointer"
+              className="group relative rounded-lg overflow-hidden cursor-pointer shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img
@@ -47,7 +58,7 @@ const IndustriesSection = () => {
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5">
-                <h3 className="text-lg font-heading font-bold text-primary-foreground mb-1">{ind.title}</h3>
+                <h3 className="text-lg font-heading font-bold text-primary-foreground mb-1 group-hover:text-gold transition-colors duration-300">{ind.title}</h3>
                 <p className="text-primary-foreground/60 text-xs leading-relaxed line-clamp-2">{ind.desc}</p>
               </div>
             </Link>

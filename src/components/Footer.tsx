@@ -4,12 +4,17 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="gradient-navy pt-16 pb-8">
+    <footer className="gradient-navy pt-20 pb-8 relative overflow-hidden">
+      {/* Top gold line */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] gradient-gold" />
+      {/* Decorative circle */}
+      <div className="absolute -bottom-32 -right-32 w-64 h-64 rounded-full border border-primary-foreground/5" />
+
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid md:grid-cols-4 gap-12 mb-14">
           <div>
-            <Link to="/"><img src={logo} alt="Radiant Control Systems" className="h-10 mb-4" /></Link>
-            <p className="text-primary-foreground/60 text-sm leading-relaxed mb-4">
+            <Link to="/"><img src={logo} alt="Radiant Control Systems" className="h-10 mb-5" /></Link>
+            <p className="text-primary-foreground/60 text-sm leading-relaxed mb-5">
               Your trusted partner in Industrial Automation since 2005. Delivering reliable and cost-effective solutions.
             </p>
             <div className="flex gap-4">
@@ -18,7 +23,7 @@ const Footer = () => {
                 { label: "Instagram", href: "https://www.instagram.com/" },
                 { label: "LinkedIn", href: "https://www.linkedin.com/company/radiant-control-systems-llc" },
               ].map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="text-primary-foreground/40 text-xs hover:text-gold transition-colors">
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="link-underline text-primary-foreground/40 text-xs hover:text-gold transition-colors pb-0.5">
                   {s.label}
                 </a>
               ))}
@@ -26,7 +31,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-primary-foreground mb-4 uppercase text-sm tracking-wider">Quick Links</h4>
+            <h4 className="font-heading font-bold text-primary-foreground mb-5 uppercase text-sm tracking-wider">Quick Links</h4>
             <div className="flex flex-col gap-3">
               {[
                 { label: "Home", href: "/" },
@@ -34,13 +39,13 @@ const Footer = () => {
                 { label: "Careers", href: "/careers" },
                 { label: "Contact Us", href: "/contact-us" },
               ].map((l) => (
-                <Link key={l.label} to={l.href} className="text-primary-foreground/60 text-sm hover:text-gold transition-colors">{l.label}</Link>
+                <Link key={l.label} to={l.href} className="link-underline text-primary-foreground/60 text-sm hover:text-gold transition-colors w-fit pb-0.5">{l.label}</Link>
               ))}
             </div>
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-primary-foreground mb-4 uppercase text-sm tracking-wider">Services</h4>
+            <h4 className="font-heading font-bold text-primary-foreground mb-5 uppercase text-sm tracking-wider">Services</h4>
             <div className="flex flex-col gap-3">
               {[
                 { label: "Control Panels", href: "/control-panels" },
@@ -48,14 +53,14 @@ const Footer = () => {
                 { label: "HMI/SCADA", href: "/hmi-scada-integration" },
                 { label: "Field Service", href: "/field-service" },
               ].map((l) => (
-                <Link key={l.label} to={l.href} className="text-primary-foreground/60 text-sm hover:text-gold transition-colors">{l.label}</Link>
+                <Link key={l.label} to={l.href} className="link-underline text-primary-foreground/60 text-sm hover:text-gold transition-colors w-fit pb-0.5">{l.label}</Link>
               ))}
             </div>
           </div>
 
           <div>
-            <h4 className="font-heading font-bold text-primary-foreground mb-4 uppercase text-sm tracking-wider">Contact Info</h4>
-            <div className="flex flex-col gap-4">
+            <h4 className="font-heading font-bold text-primary-foreground mb-5 uppercase text-sm tracking-wider">Contact Info</h4>
+            <div className="flex flex-col gap-5">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <span className="text-primary-foreground/60 text-sm">6340 Sugarloaf Parkway, Suite # 200, Duluth, GA 30097</span>

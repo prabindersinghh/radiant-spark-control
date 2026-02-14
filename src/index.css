@@ -51,6 +51,10 @@
     --gold: 43 78% 55%;
     --gold-light: 43 70% 70%;
     --gold-dark: 43 80% 42%;
+
+    --shadow-card: 0 1px 3px 0 hsl(215 62% 26% / 0.04), 0 4px 12px -2px hsl(215 62% 26% / 0.06);
+    --shadow-card-hover: 0 8px 30px -4px hsl(215 62% 26% / 0.1), 0 4px 12px -2px hsl(215 62% 26% / 0.06);
+    --shadow-elevated: 0 20px 50px -12px hsl(215 62% 26% / 0.15);
   }
 
   .dark {
@@ -81,6 +85,10 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 12px -2px hsl(0 0% 0% / 0.15);
+    --shadow-card-hover: 0 8px 30px -4px hsl(0 0% 0% / 0.25), 0 4px 12px -2px hsl(0 0% 0% / 0.15);
+    --shadow-elevated: 0 20px 50px -12px hsl(0 0% 0% / 0.4);
   }
 }
 
@@ -96,6 +104,11 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {
@@ -110,5 +123,103 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Card shadows */
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Scroll reveal states */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger children — apply .stagger-grid to parent, children get sequential delay */
+  .stagger-grid.visible > * {
+    animation: stagger-fade-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .stagger-grid > * { opacity: 0; }
+  .stagger-grid.visible > *:nth-child(1) { animation-delay: 0.04s; }
+  .stagger-grid.visible > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger-grid.visible > *:nth-child(3) { animation-delay: 0.16s; }
+  .stagger-grid.visible > *:nth-child(4) { animation-delay: 0.22s; }
+  .stagger-grid.visible > *:nth-child(5) { animation-delay: 0.28s; }
+  .stagger-grid.visible > *:nth-child(6) { animation-delay: 0.34s; }
+  .stagger-grid.visible > *:nth-child(7) { animation-delay: 0.4s; }
+  .stagger-grid.visible > *:nth-child(8) { animation-delay: 0.46s; }
+
+  @keyframes stagger-fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Link underline slide */
+  .link-underline {
+    @apply relative;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[2px] origin-bottom-right scale-x-0;
+    background: hsl(var(--gold));
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover::after {
+    @apply origin-bottom-left scale-x-100;
+  }
+
+  /* Button micro-interaction */
+  .btn-interact {
+    @apply transition-all duration-200;
+  }
+  .btn-interact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px -4px hsl(var(--gold) / 0.35);
+  }
+  .btn-interact:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 8px -2px hsl(var(--gold) / 0.3);
+  }
+
+  /* Section separator */
+  .section-separator {
+    @apply relative;
+  }
+  .section-separator::before {
+    content: '';
+    @apply absolute top-0 left-1/2 -translate-x-1/2 w-16 h-[3px] rounded-full;
+    background: linear-gradient(90deg, hsl(var(--gold-dark)), hsl(var(--gold-light)));
+  }
+
+  /* Logo carousel */
+  .logo-scroll {
+    animation: logo-scroll 30s linear infinite;
+  }
+  @keyframes logo-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Shimmer skeleton */
+  .shimmer {
+    background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--muted-foreground) / 0.08) 50%, hsl(var(--muted)) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
   }
 }
