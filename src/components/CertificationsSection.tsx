@@ -29,15 +29,14 @@ const CertificationsSection = () => {
     <section className="py-20 bg-muted/50 border-t border-border">
       <div className="container mx-auto px-4">
         <div ref={ref} className={`reveal ${visible ? "visible" : ""}`}>
-          <h3 className="text-2xl font-heading font-bold text-gold mb-10">
+          <h3 className="text-2xl font-heading font-bold text-gold mb-8">
             DBE &amp; MBE Certified
           </h3>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Left: Credentials + Badges */}
-            <div className="space-y-8">
-              {/* Credential codes */}
-              <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Credentials List */}
+            <div>
+              <div className="flex flex-col gap-3 mb-8">
                 {credentials.map((c, i) => (
                   <p key={i} className="text-sm text-foreground">
                     <span className="font-bold">{c.label}:</span>{" "}
@@ -46,24 +45,19 @@ const CertificationsSection = () => {
                 ))}
               </div>
 
-              {/* Badges row */}
-              <div className="flex flex-wrap items-center gap-5">
+              {/* Badges */}
+              <div className="flex flex-wrap items-center gap-6 mb-8">
                 {badges.map((b) => (
-                  <div
+                  <img
                     key={b.alt}
-                    className="bg-card rounded-lg p-3 shadow-card hover:shadow-card-hover transition-shadow duration-300"
-                  >
-                    <img
-                      src={b.src}
-                      alt={b.alt}
-                      className="h-16 w-16 object-contain"
-                    />
-                  </div>
+                    src={b.src}
+                    alt={b.alt}
+                    className="h-20 w-20 object-contain"
+                  />
                 ))}
               </div>
 
-              {/* UEI & E-Verify */}
-              <div className="flex gap-8">
+              <div className="flex flex-col gap-2">
                 <p className="text-sm text-foreground">
                   <span className="font-bold">UEI #</span>{" "}
                   <span className="text-muted-foreground">S5L4B99AGYX3</span>
