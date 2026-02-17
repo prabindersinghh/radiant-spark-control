@@ -61,7 +61,7 @@ const ServicePage = ({ slug }: { slug: string }) => {
                   className="group bg-card border border-border rounded-lg p-8 hover:border-gold/50 hover:shadow-xl transition-all duration-300"
                 >
                   <div className="w-16 h-16 rounded-md gradient-navy flex items-center justify-center mb-6 group-hover:scale-110 transition-transform p-3">
-                    <img src={s.icon} alt={s.title} className="w-full h-full object-contain" />
+                    <img src={s.icon} alt={s.title} className="w-full h-full object-contain brightness-0 invert" />
                   </div>
                   <h3 className="text-xl font-heading font-bold text-foreground mb-3">{s.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
@@ -83,7 +83,7 @@ const ServicePage = ({ slug }: { slug: string }) => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="w-20 h-20 rounded-md gradient-navy flex items-center justify-center mb-8 p-4">
-            <img src={service.icon} alt={service.title} className="w-full h-full object-contain" />
+            <img src={service.icon} alt={service.title} className="w-full h-full object-contain brightness-0 invert" />
           </div>
           <p className="text-muted-foreground leading-relaxed text-lg mb-8">{service.desc}</p>
           <Link
