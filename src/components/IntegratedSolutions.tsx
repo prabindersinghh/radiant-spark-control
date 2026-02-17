@@ -51,7 +51,7 @@ const IntegratedSolutions = () => {
               className="group bg-card border border-border rounded-lg p-6 shadow-card hover:shadow-card-hover hover:border-gold/40 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="w-14 h-14 rounded-md gradient-navy flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 p-2.5 shadow-card">
-                <img src={s.icon} alt={s.title} className="w-full h-full object-contain" />
+                <img src={s.icon} alt={s.title} className="w-full h-full object-contain brightness-0 invert" />
               </div>
               <h3 className="text-base font-heading font-bold text-foreground mb-2 uppercase">{s.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
