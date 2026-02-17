@@ -38,7 +38,7 @@ const ServicesSection = () => {
               className="group bg-card border border-border rounded-lg p-8 shadow-card hover:shadow-card-hover hover:border-gold/40 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="w-16 h-16 rounded-md gradient-navy flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 p-3 shadow-card">
-                <img src={s.icon} alt={s.title} className="w-full h-full object-contain" />
+                <img src={s.icon} alt={s.title} className="w-full h-full object-contain brightness-0 invert" />
               </div>
               <h3 className="text-xl font-heading font-bold text-foreground mb-3">{s.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
